@@ -1,110 +1,118 @@
+# 🌳 Decision Tree Classifier – Diabetes Prediction
 
-# 📘 Machine Learning Assignment 1
+This project implements and analyzes a **Decision Tree Classifier** to predict diabetes based on various patient features. The analysis evaluates performance on both **noiseless** and **noisy** datasets, with and without pruning, to study the effects of noise and pruning on accuracy and tree complexity.
+
+---
 
 ## 📑 Table of Contents
-- [About the Project](#-about-the-project)  
-- [Dataset](#-dataset)  
-- [Features Implemented](#-features-implemented)  
-- [Project Structure](#-project-structure)  
-- [Installation](#-installation)  
-- [Usage](#-usage)  
-- [Results](#-results)  
-- [Technologies Used](#-technologies-used)  
-- [Contributing](#-contributing)  
-- [License](#-license)  
+- [About the Project](#-about-the-project)
+- [Datasets](#-datasets)
+- [Methodology](#-methodology)
+- [Results](#-results)
+- [Project Structure](#-project-structure)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Technologies Used](#-technologies-used)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-
+---
 
 ## 📖 About the Project
-This assignment is part of the **Machine Learning course** and focuses on applying key ML algorithms and concepts. The notebook includes:  
+The objective of this assignment is to **train and evaluate a Decision Tree classifier** for diabetes prediction. We compare results on:
+- **Noiseless Dataset** (`diabetes.csv`)
+- **Noisy Dataset** (`diabetes_noise.csv`)
 
-- Data preprocessing & cleaning  
-- Exploratory Data Analysis (EDA) with visualizations  
-- Implementation of multiple ML algorithms  
-- Model comparison using evaluation metrics  
-- Insights and conclusions  
+Additionally, the effect of **pruning** on decision tree depth, node count, and model performance is studied.
 
-The goal is to build a strong foundation in **supervised & unsupervised learning techniques**, ensuring clear understanding of theory and practice.  
+---
 
+## 📂 Datasets
+- **`diabetes.csv`** → Clean (noiseless) dataset with patient health features.  
+- **`diabetes_noise.csv`** → Dataset with artificially introduced noise.  
 
-## 📂 Dataset
-- **Source**: *[Add dataset source or mention if provided in course]*  
-- **Format**: CSV / TXT / Inbuilt Scikit-learn dataset  
-- **Attributes**: Features include `[feature1, feature2, ..., label]`  
-- **Size**: Approximately `N rows × M columns`  
+Each dataset includes **medical features** such as glucose level, BMI, age, blood pressure, etc., with the target label indicating **diabetes presence (Yes/No)**.
 
+---
 
+## ⚙️ Methodology
+1. Preprocessed the datasets (handled missing values, normalized features).  
+2. Built a **Decision Tree classifier** using `scikit-learn`.  
+3. Evaluated the model on **accuracy, precision, and recall**.  
+4. Applied **tree pruning** to reduce overfitting.  
+5. Compared results for **noisy vs noiseless datasets**.  
 
-## 🚀 Features Implemented
-- ✔️ Data preprocessing (handling missing values, normalization, encoding)  
-- ✔️ Exploratory Data Analysis (EDA) with plots & statistics  
-- ✔️ Implementation of **classification/regression models**  
-- ✔️ Training & evaluation with accuracy, precision, recall, F1-score, etc.  
-- ✔️ Model comparison and result visualization  
-- ✔️ Well-documented Jupyter Notebook for reproducibility  
-
-
-## 📁 Project Structure
-ML_Assignment_1/
-│── ML_Assignment_1.ipynb   # Main Jupyter notebook
-│── data/                   # Dataset(s)
-│── results/                # Output plots & metrics
-│── README.md               # Project documentation
-│── requirements.txt        # Python dependencies
-````
-
-
-## ⚙️ Installation
-
-Clone this repository and install dependencies:
-
-```bash
-# Clone repository
-git clone https://github.com/<your-username>/ML_Assignment_1.git
-cd ML_Assignment_1
-
-
-## ▶️ Usage
-
-To run the notebook:
-jupyter notebook ML_Assignment_1.ipynb
-
-
-OR convert to script and execute:
-
-jupyter nbconvert --to script ML_Assignment_1.ipynb
-python ML_Assignment_1.py
+---
 
 ## 📊 Results
 
-Key findings from this assignment:
-
-* ✅ Model performance metrics (Accuracy, Precision, Recall, F1-score)
-* ✅ Graphs of training vs testing performance
-* ✅ Insights from confusion matrix / ROC curves
-
-📌 *Screenshots / plots from the notebook can be added here for clarity.*
+### 📌 Noiseless Dataset (`diabetes.csv`)
+| Metric       | Before Pruning | After Pruning |
+|--------------|----------------|---------------|
+| **Accuracy** | 0.7143         | 0.7597        |
+| **Precision**| 0.6913         | 0.7597        |
+| **Recall**   | 0.6970         | 0.7606        |
+| **Tree Size**| Height: 16, Nodes: 153 | Height: 7, Nodes: 35 |
 
 ---
+
+### 📌 Noisy Dataset (`diabetes_noise.csv`)
+| Metric       | Before Pruning | After Pruning |
+|--------------|----------------|---------------|
+| **Accuracy** | 0.4811         | 0.6054        |
+| **Precision**| 0.4593         | 0.5944        |
+| **Recall**   | 0.4600         | 0.5954        |
+| **Tree Size**| Height: 21, Nodes: 371 | Height: 12, Nodes: 94 |
+
+---
+
+### ✅ Key Insights
+- Pruning significantly improved **performance** and reduced **tree complexity**.  
+- Noisy data led to **lower accuracy and unstable precision/recall**.  
+- The **noiseless dataset after pruning** achieved the **best balance** of performance and interpretability.  
+
+---
+
+## 📁 Project Structure
+```bash
+diabetes_decision_tree/
+│── diabetes.ipynb          # Jupyter Notebook with code & analysis
+│── data/
+│   ├── diabetes.csv        # Noiseless dataset
+│   ├── diabetes_noise.csv  # Noisy dataset
+│── results/                # Plots, evaluation metrics, and confusion matrices
+│── README.md               # Documentation
+│── requirements.txt        # Python dependencies
+
+⚙️ Installation
+
+Clone this repository and install dependencies:
+# Clone repo
+git clone https://github.com/<your-username>/diabetes-decision-tree.git
+cd diabetes-decision-tree
 
 ## 🛠 Technologies Used
 
-* **Python 3.8+**
-* **NumPy, Pandas** (data processing)
-* **Matplotlib, Seaborn** (visualization)
-* **Scikit-learn** (ML models & evaluation)
-* **Jupyter Notebook** (experimentation environment)
+Python 3.8+
 
----
+Pandas, NumPy – Data handling
 
-## 🤝 Contributing
+Matplotlib, Seaborn – Visualization
 
-Contributions are welcome!
+Scikit-learn – Decision Tree model
 
-1. Fork this repository
-2. Create a new branch (`feature-branch`)
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+Jupyter Notebook – Interactive environment
 
----
+## Contributions are welcome!
+
+Fork this repository
+
+Create a new branch (feature-branch)
+
+Commit your changes
+
+Push to the branch
+
+Open a Pull Request
+
+
